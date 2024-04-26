@@ -1,9 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const nanoid = require('nanoid');
+const connectToDatabase = require('./db');
+const dotenv = require('dotenv');
+dotenv.config();
+
+connectToDatabase();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3009;
 app.use(bodyParser.json());
 
 let messages = [];
