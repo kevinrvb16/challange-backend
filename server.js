@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const nanoid = require('nanoid');
 
 const app = express();
 const PORT = 3000;
@@ -10,7 +11,7 @@ let messages = [];
 // Create a new message
 app.post('/messages', (req, res) => {
     const { title, description } = req.body;
-    const newMessage = { id, title, description };
+    const newMessage = { id: nanoid(), title, description };
     messages.push(newMessage);
     res.status(201).json(newMessage);
 });
