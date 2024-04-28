@@ -1,12 +1,12 @@
-import Message from './schema.cjs';
+import Message from './schema.js';
 
 const createMessage = async (messageData) => {
     try {
-        const message = new MessageSchema(messageData);
+        const message = new Message(messageData);
         await message.save();
         return message;
     } catch (error) {
-        throw new Error('Failed to create message');
+        throw new Error(error.message);
     }
 };
 
@@ -19,9 +19,9 @@ const getAllMessages = async () => {
     }
 };
 
-const getMessageById = async (id) => {
+const getMessageById = async (_id) => {
     try {
-        const message = await Message.findById(id);
+        const message = await Message.findById(_id);
         return message;
     } catch (error) {
         throw new Error('Failed to get message');
